@@ -47,10 +47,10 @@ background-color: #2f1a61;
 
 </style>
 ```
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
 ```
-
 
 Today, we will start by setting up a basic workflow with GitHub. This workflow will make it easier to keep track of your work and collaborate with others. From there, we will learn about functional programming in R. This is one of the most important parts of coding with R (and I cannot stress enough how important it is). Built-in functions and packages can only get you so far. There will be times when it is both easier and more efficient to create your own.
 
@@ -61,33 +61,29 @@ This lab will teach you how to:
 -   iterate functions over multiple inputs
 -   vectorise your functions using the purrr package
 
-
 ------------------------------------------------------------------------
 
-
-# 1   . Git and GitHub (Condensed Version)
+# 1 . Git and GitHub (Condensed Version)
 
 This is the condensed version of the version control extra session, which can be found in full [here](https://github.com/intro-to-data-science-25/labs/tree/main/session-00-version-control). We will create your first repo on GitHub and see how we can use it to keep a record of all the changes that were ever made to your code. This is an essential component of collaborative coding efforts, but can also be immensely beneficial for your own solo projects.
 
 The structure of this session is as follows:
 
-1.   Create a new repo on GitHub and initialize it
-1.   Clone this repo to your local machine
-1.   Make some changes to a file
-1.   Stage these local changes
-1.   Commit them to our Git history with a helpful message
-1.   Pull from the GitHub repo just in case anyone else made changes too (not expected here, but good practice).
-1.   Push our changes to the GitHub repo.
+1.  Create a new repo on GitHub and initialize it
+2.  Clone this repo to your local machine
+3.  Make some changes to a file
+4.  Stage these local changes
+5.  Commit them to our Git history with a helpful message
+6.  Pull from the GitHub repo just in case anyone else made changes too (not expected here, but good practice).
+7.  Push our changes to the GitHub repo.
 
-Before we get into the nitty-gritty of this week's session, I would like to suggest you all [download GitHub Desktop](https://desktop.github.com/). It is a GUI that lets you interact with GitHub and might be an additional option if your do not want to rely on RStudio or the Command Line alone. 
+Before we get into the nitty-gritty of this week's session, I would like to suggest you all [download GitHub Desktop](https://desktop.github.com/). It is a GUI that lets you interact with GitHub and might be an additional option if your do not want to rely on RStudio or the Command Line alone.
 
 There are a number of different GUIs that you can try out and play around with. Some are better than others. An example of another free GUI like GitHub Desktop is [GitKraken](https://www.gitkraken.com/).
 
 ------------------------------------------------------------------------
 
-
 ## Suggested Workflow `r emo::ji("surfer")`
-
 
 This is the recommended workflow that you should employ when you work with Git. You can see it as a sort of recipe that you should follow under most circumstances. At each stage you can find the instructions for working through both the Command Line and through RStudio. **Be aware** however that these are **separate** processes that should not be mixed. Either you use the shell for version control or you use RStudio or you use GitHub Desktop.
 
@@ -107,11 +103,9 @@ This is the recommended workflow that you should employ when you work with Git. 
 
 Great, now that you have created a new repo on GitHub, it is important to note that you **should always** create a repo **prior** to starting your work in RStudio.
 
-
 ### 2. Clone it to your local machine {.tabset}
 
 Whatever way you plan on cloning this repo, you first need to copy the URL identifying it. Luckily there is another green button "Code" that allows you to do just that. Copy the HTTPS link for now. It will look something like this <https://github.com/your-git-username/my_first_repo.git>.
-
 
 #### Using GitHub Desktop
 
@@ -141,7 +135,6 @@ Finally, click the "Create Project" to create a new directory. What you get are 
 
 In the absence of other constraints, I suggest that all of your R projects have exactly this set-up.
 
-
 #### Using the Command Line
 
 Open the Terminal on your laptop.
@@ -165,7 +158,6 @@ git status
 ```
 
 ###  {.unlisted .unnumbered}
-
 
 ### 3. Make changes to a file {#code}
 
@@ -207,15 +199,11 @@ gapminder_clean <- gapminder %>%
 
 ```
 
-
-
 ###  {.unlisted .unnumbered}
-
 
 ### 4. Stage your Changes and Commit {.tabset}
 
 Before we get on to the next step, it is a good idea to save this newly created script and give it a name. Now that your changes are saved locally we need to let Git know.
-
 
 #### Using GitHub Desktop
 
@@ -227,7 +215,6 @@ You only really need to commit the changes with a nice little summary or message
 knitr::include_graphics("./pics/github_desktop_stage_commit.gif")
 ```
 
-
 #### Using RStudio
 
 In the Environment/History panel a new tab called "git" should have appeared.
@@ -238,7 +225,6 @@ In the Environment/History panel a new tab called "git" should have appeared.
 -   In this window you can quickly add a helpful message to mark exactly what you did. (Do not neglect this, as Git won't allow you to commit without it. Plus, a clear message will help both you and your collaborators to understand your changes.)
 
 This method has the clear advantage of being extremely intuitive. However you are limited to selecting and staging individual files.
-
 
 #### Using the Command Line
 
@@ -277,7 +263,6 @@ As you can imagine, the command shell with its different options (and there are 
 
 ###  {.unlisted .unnumbered}
 
-
 ### 5. Pulling and Pushing your commits {.tabset}
 
 This part of the version control workflow should be relatively easy. The most important thing to remember is that you should always **pull** before you **push**. The reason for this is that in collaborative projects someone else might have pushed changes to the same file you were working on. This can lead to conflicts that should be avoided, if possible.
@@ -290,7 +275,6 @@ It is not really straightforward to pull before pushing with GitHub Desktop. Giv
 knitr::include_graphics("./pics/github_desktop_pull_and_push.gif")
 ```
 
-
 #### Using RStudio
 
 In RStudio you should see a change in the **git** tab. It should now read: "Your branch is ahead of 'origin/main' by 1 commit"
@@ -298,7 +282,6 @@ In RStudio you should see a change in the **git** tab. It should now read: "Your
 As long as this information is displayed, you know that you need to pull and push your commit.
 
 To do this simply click on the blue arrow pointing down to **pull** from your main repo, before clicking on the green arrow pointing upwards to **push** your commits.
-
 
 #### Using the Command Line
 
@@ -316,20 +299,13 @@ And to push your commits:
 git push
 ```
 
-
 ------------------------------------------------------------------------
-
-
 
 ## Practice Assignment Setup
 
 We'll be using GitHub for the assignments. Let's take a look at the [practice assignment](https://classroom.github.com/a/hcc-Z6C7) to get familiar with the workflow.
 
-
-
-
 # 2. Functions with `R`
-
 
 ## Quick review: lists `r emo::ji("page_with_curl")`
 
@@ -356,7 +332,6 @@ head(gapminder)
 
 Lists are very useful when you start writing your own functions and iterating through them using the `purrr` family of functions.
 
-
 ------------------------------------------------------------------------
 
 ## Functions `r emo::ji("factory")`
@@ -369,7 +344,7 @@ Functions allow you to automate tasks in a more powerful and general way. Writin
 
 2.  You eliminate the chance of making incidental mistakes when you copy and paste (i.e. updating a variable name in one place, but not in another).
 
-3. You can give functions descriptive names that make your code easier to understand.
+3.  You can give functions descriptive names that make your code easier to understand.
 
 You can read more on functions in [this section](https://r4ds.had.co.nz/functions.html#functions) of Rfor Data Science.
 
@@ -388,7 +363,7 @@ df <- data.frame(
 )
 
 df$a <- (df$a - mean(df$a, na.rm = TRUE)) / sd(df$a, na.rm = TRUE)
-df$b <- (df$b - mean(df$b, na.rm = TRUE)) / sd(df$a, na.rm = TRUE) # can you spot the mistake?
+df$b <- (df$b - mean(df$b, na.rm = TRUE)) / sd(df$a, na.rm = TRUE) # can you spot the mistake? Answer: df$a in the last bracket instead of df$b
 df$c <- (df$c - mean(df$c, na.rm = TRUE)) / sd(df$c, na.rm = TRUE)
 df$d <- (df$d - mean(df$d, na.rm = TRUE)) / sd(df$d, na.rm = TRUE)
 ```
@@ -397,7 +372,7 @@ There are three key steps to creating a new function:
 
 1.  Pick a **name** for the function. We'll use `zscale` because this function re-scales (or "z-transforms") a vector to have a mean of 0 and a standard deviation of 1.
 
-2. List the **inputs**, or **arguments**, to the function inside the brackets. Here we have just one argument. If we had more, the call would look like this: `function(x, y, z)`.
+2.  List the **inputs**, or **arguments**, to the function inside the brackets. Here we have just one argument. If we had more, the call would look like this: `function(x, y, z)`.
 
 3.  Place the code you have developed in the **body** of the function. The body of the function is represented by a `{}` block that immediately follows the `function(...)` call.
 
@@ -417,7 +392,6 @@ zscale <- function(x) {
   (x - mean(x, na.rm = T) / sd(x, na.rm = T))
 }
 ```
-
 
 Now instead of repeating that long formula four times (and risking copy-paste errors), we can simply use:
 
@@ -477,9 +451,10 @@ Note that there is still a lot of repetition in the example above. We can get ri
 
 ------------------------------------------------------------------------
 
-First, let's do one last exercise with functions. We will work with `palmerpenguins` again. 
+First, let's do one last exercise with functions. We will work with `palmerpenguins` again.
 
 ```{r, eval=T}
+library(tidyverse)
 library(palmerpenguins)
 data(penguins)
 str(penguins)
@@ -487,28 +462,46 @@ str(penguins)
 
 ------------------------------------------------------------------------
 
-:::alert-info
+::: alert-info
 **Exercise 1:**
 
-Can you write a function to calculate the mode for a variable in the data? Let's call it `get_mode`. 
+Can you write a function to calculate the mode for a variable in the data? Let's call it `get_mode`.
 
 ```{r}
 # break down the problem into multiple parts
 # you might want to 
 # a) count how many times each value appears in a vector
 # b) find which value(s) appear most frequently
+
+# Base R:
+get_mode <- function(x){
+  x <- na.omit(x)
+  freq_table <- table(x)
+  my_mode <- names(which.max(freq_table))
+  return(my_mode)
+}
+
+# Tidyverse solution
+get_mode <- function(x){
+ my_mode <-  as.data.frame(x) |>
+   filter(!is.na(x)) |>
+   count(x, sort = TRUE) |> 
+   slice(1) |> 
+   pull(x)
+ return(my_mode)
+}
 ```
 :::
 
----
+------------------------------------------------------------------------
 
-:::alert-info
+::: alert-info
 **Exercise 2:**
 
 What is the mode for the variable `flipper_length_mm`?
 
 ```{r}
-
+get_mode(penguins$flipper_length_mm)
 ```
 :::
 
@@ -557,7 +550,6 @@ for (i in seq_along(df)) {       # seq_along() similar to length()
 }
 ```
 
-
 Remember, this only works for `for` loops that manipulate existing inputs (i.e. columns in a dataframe). If you want to save the output of your function in a different way, you need to define the object where you wish to store the output **ahead** of the function. In this case, you will see a pre-defined vector and an empty list:
 
 ```{r}
@@ -601,7 +593,6 @@ You should also be aware that there is a conditional version of for-loops called
 
 For-loops are not as important in R as they are in other languages because R is a functional programming language. This means that it's possible to wrap up for-loops in a function, and call that function instead of using the for-loop directly. `r emo::ji("bulb")`
 
-
 ### Basic syntax `r emo::ji("pen")`
 
 The `purrr` package provides functions that eliminate the need for many common for loops. The apply family of functions in base R (`apply()`, `lapply()`, `tapply()`, etc.) solve a similar problem, but `purrr` is more consistent and thus is easier to learn. The most useful function will be `map(.x, .f)`, where:
@@ -613,7 +604,6 @@ The `purrr` package provides functions that eliminate the need for many common f
 ```{r, echo = FALSE, out.width="49%", out.height="20%",fig.cap="Logic behind vectorised functions (also called functional programming).",fig.show='hold',fig.align='center'}
 knitr::include_graphics("pics/purrr_f_list.png")
 ```
-
 
 Three ways to pass functions to `map()`:
 
@@ -642,7 +632,6 @@ purrr::map(df, \(x) {
 purrr::map(.x = df, ~ mean(.x, na.rm = TRUE))
 
 ```
-
 
 Let's look at this in practice. Imagine you want to calculate the mean of each column in your data frame:
 
@@ -676,7 +665,7 @@ The pattern of looping over a vector, doing something to each element and saving
 
 ------------------------------------------------------------------------
 
-:::alert-info
+::: alert-info
 **Exercise 3:**
 
 Go back to the example above. Since all of the means are numeric, it makes more sense to store them in a vector rather than a list. Which function should we use and how?
@@ -685,8 +674,6 @@ Go back to the example above. Since all of the means are numeric, it makes more 
 ```{r}
 
 ```
-
-
 
 ------------------------------------------------------------------------
 
@@ -703,32 +690,39 @@ The function works exactly the same way as the `purrr::map*` functions for a sin
 
 ------------------------------------------------------------------------
 
-
-:::alert-info
+::: alert-info
 **Exercise 4:**
 
 Write a function that returns both the mean and the standard deviation for the numeric variables in our `palmerpenguins` data.
 :::
 
 ```{r}
-
+get_mean_sd <- function(x){
+  if(!is.numeric(x)){
+    stop("Non-numeric input provided!")
+  }
+  else{
+   return(list(
+     "mean" <- mean(x, na.rm = TRUE),
+     "sd" <- sd(x, na.rm = TRUE)
+   ))
+  }
+}
 ```
-
-
 
 ------------------------------------------------------------------------
 
-:::alert-info
+::: alert-info
 **Exercise 5:**
 
 Iterate over the relevant columns.
 :::
 
-
 ```{r}
-
+penguins |> 
+  select_if(is.numeric) |> 
+  map(get_mean_sd)
 ```
-
 
 ------------------------------------------------------------------------
 
@@ -742,9 +736,6 @@ One such skill is the question of how to integrate tidyverse functions into your
 -   **tidy selection** allows you to switch choosing variables based on their position, name, or type (e.g. `starts_with("x")` or `is.numeric`).
 
 Data masking and tidy selection make interactive data exploration fast and fluid, but they add some new challenges when you attempt to use them indirectly such as in a for loop or a function. [This vignette](https://dplyr.tidyverse.org/articles/programming.html) shows you how to overcome those challenges.
-
-
-
 
 ------------------------------------------------------------------------
 
