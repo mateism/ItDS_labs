@@ -206,7 +206,16 @@ ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
 ```
 
 ```{r}
-# YOUR CODE HERE
+penguin_adv_scatter <- ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, colour = species)) +
+  geom_point() + 
+  labs(
+    title = "Advanced plot",
+    x = "Flipper Length (mm)",
+    y = "Body Mass (g)",
+    colour = "Species") +
+  theme_minimal()
+
+penguin_adv_scatter
 ```
 
 
@@ -254,7 +263,8 @@ What would happen if we specified 5 bins? Try it out.
 
 
 ```{r}
-# YOUR CODE HERE
+ggplot(df, aes(x = lifeExp)) +
+  geom_histogram(bins = 100)
 ```
 
 
@@ -330,14 +340,28 @@ Create a histogram showing the distribution of penguin body mass using the `peng
 1. Experiment with different geoms by replacing geom_histogram() with options like geom_density(), geom_bar(), or others.
 
 ```{r}
-# YOUR CODE HERE
-
+ggplot(penguins, aes(x = body_mass_g)) +
+  geom_histogram(bins = 25, fill = "red") +
+  theme_minimal() +
+  labs(
+    title = "Penguins' bodymass distribution",
+    x = "Bodymass (g)",
+    y = "Number"
+  )
+  
+ggplot(penguins, aes(x = species, y = body_mass_g)) +
+  geom_boxplot(fill = "#FF6666") +
+  theme_minimal() +
+  coord_flip()
 ```
 
 1. Now, look for a variable in the dataset that can be used to meaningfully group body mass. Use that variable to create a box plot or violin plot of body mass.
 
 ```{r}
-# YOUR CODE HERE
+ggplot(penguins, aes(x = species, y = body_mass_g)) +
+  geom_violin(fill = "#FF6666") + 
+  theme_minimal() +
+  coord_flip()
 ```
 
 
@@ -670,7 +694,36 @@ ggplot(subset(diff07, continent == "Europe" & year == 2007),
 Create a scatter plot to explore the relationship between `flipper_length_mm` and `body_mass_g`. Then, color by a grouping variable (of your choice) and add linear trend lines.
 
 ```{r}
-# YOUR CODE HERE
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, colour = species)) +
+  geom_point(alpha = 0.6, size = 1.2) +
+  geom_smooth(method = "lm", inherit.aes = F, aes(x = flipper_length_mm, y = body_mass_g)) +
+  theme_minimal() +
+  labs(
+    x = "Flipper length (mm)",
+    y = "Bodymass (g)",
+    colour = "Species"
+  )
+
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, colour = island)) +
+  geom_point() +
+  geom_smooth(method = "lm", inherit.aes = F, aes(x = flipper_length_mm, y = body_mass_g)) +
+  theme_minimal() +
+  labs(
+    x = "Flipper length (mm)",
+    y = "Bodymass (g)",
+    colour = "Species"
+  )
+
+ggplot(drop_na(penguins), aes(x = flipper_length_mm, y = body_mass_g, colour = sex)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  theme_minimal() +
+  labs(
+    subtitle = "Omitting observations where sex is NA",
+    x = "Flipper length (mm)",
+    y = "Bodymass (g)",
+    colour = "Species"
+  )
 ```
 
 ---
