@@ -22,14 +22,44 @@ pal <- colorNumeric("YlOrRd", domain = NULL)
 africa <- ne_countries(continent = "Africa", returnclass = "sf")
 ```
 
+### Column {.sidebar}
+--------------------------------------------------
+```{r}
+selectInput(inputId = "year", 
+            label = "Select Year:", 
+            choices = unique(gapminder::gapminder$year),
+            selected = 2007)
+```
 
+### Column {data-width=650}
+--------------------------------------------------
 
 ### African Countries 
+
 ```{r}
 # Plot 
-leaflet(africa) |>
+renderLeaflet({
+  # Load gapminder data
+  gapminder_africa <- gapminder::gapminder |> 
+    filter(year == input$year, continent == "Africa")
+
+  # Joining the dataframes by country name
+  africa_data <- africa |>
+    left_join(gapminder_africa, by = c("name" = "country"))
+  
+  # Plot with colors
+  leaflet(africa_data) |>
   addTiles() |>
-  addPolygons()
+  addPolygons(fillColor = ~pal(lifeExp), 
+              fillOpacity = 0.7
+              ) |> 
+  addLegend("bottomleft",
+            pal = pal,
+            values = ~lifeExp,
+            title = "Life expectancy"
+            )
+})
 ```
+
 
 
