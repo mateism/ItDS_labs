@@ -1,0 +1,56 @@
+---
+title: "Scraping_exc_session11"
+author: "Simon Marcell Matei"
+date: "2025-11-26"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(rvest)
+library(dplyr)
+library(stringr)
+library(tidyr)
+library(purrr)
+```
+
+```{r}
+url <- "http://books.toscrape.com/"
+webpage <- read_html(url)
+
+#titles
+titles <- webpage |> 
+  html_elements(xpath = "//article[@class='product_pod']/h3/a") |> 
+  html_attr("title")
+
+#prices
+prices <- webpage |> 
+  html_elements(xpath = "//div[@class='product_price']/p[1]") |> 
+  html_text2()
+
+#ratings
+ratings <- webpage |> 
+  html_elements(xpath = "//article[@class='product_pod']/p[contains(@class, 'star-rating')]") |> 
+  html_attr("class") |> 
+  str_remove("star-rating ") |> 
+  factor(levels = c("One", "Two", "Three", "Four", "Five"), labels = 1:5)
+
+#stocks
+book_links <- webpage |> 
+  html_elements(xpath = "//article[@class='product_pod']/h3/a") |> 
+  html_attr("href") |> 
+  (\(x) paste0("https://books.toscrape.com/", x))() #native pipe philosophy, magrittr pipe could just use . as placeholder
+
+get_stock <- function(link) {
+  book_page <- read_html(link)
+  stock_text <- book_page |> 
+    html_element(xpath = "//p[@class='instock availability']") |> 
+    html_text()
+  stock_number <- str_extract(stock_text, "[[:digit:]]+")
+  return(as.integer(stock_number))
+}
+
+stocks <- map_int(book_links, get_stock)
+```
+
